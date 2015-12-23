@@ -10,7 +10,7 @@ title: Ly's Blog
 email: lynguyendc@gmail.com
 description: Hi! I'm Ly and this is my blog where I will discuss and provide tutorials for a variety of web development techniques and tools. Enjoy!
 baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "http://Ly900.github.io" # the base hostname & protocol for your site
+# url: "http://Ly900.github.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
