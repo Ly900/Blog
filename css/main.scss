@@ -43,11 +43,58 @@ $on-laptop:        800px;
     }
 }
 
-
-
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",
         "layout",
         "syntax-highlighting"
 ;
+
+html, body, ul, li, img, p, h1, h2, h3, ol {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  margin: 10px 0px;
+}
+
+ol {
+  background-color: #fff;
+  width: 100%;
+  margin: 10px;
+}
+
+li {
+  margin: 10px 0px;
+  max-width: 100%;
+  color: #000;
+  margin: 10px 10px;
+}
+
+ul p {
+  color: #000;
+  margin: 10px 0;
+}
+
+h1 {
+  margin: 40px 0;
+  text-align: center;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+h2#intro {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+h3 {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 20px 0;
+}

@@ -7,31 +7,167 @@ categories: jekyll Ly Nguyen blog web developer development
 permalink: how-to-install-jekyll-and-start-a-blog
 image: jekyll-logo.png
 ---
-To install Jekyll, follow the steps below:
 
-1. Type "gem install jekyll" into the command line.
-2. Start a new project by typing "jeckyll new \<name-of-project\>." Go into the project.
-3. Type "jekyll serve" in the command line to start up the Jekyll-provided local server.
-4. Go to the config.yml file to update it with your blog's information (Tip: Every time you change the config file, save it, exit the server by hitting Control + C, type "jeckyll serve" again, and then refresh the page.)
-5. Go to Jekyll's "about.md" page and update it with information about yourself (Note: you do not need to restart the server if you make changes outside of the config file- just refresh the browser after changes).
-6. Go to Jekyll's "posts" directory and use its sample welcome file to create your first blog.
+<h2 id="intro">
+  In this tutorial, I will show you how to get up and running with a basic Jekyll blog. At the end of this tutorial is a section on issues I had along the way/things I learned. You might also find it helpful to take a sneak peek at that first!
+</h2>
 
-{% comment %}
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+<p>
+  To install Jekyll, follow the steps below:
+</p>
 
-Jekyll also offers powerful support for code snippets:
+<ol>
+  <li>
+    <img style="width: 50%;" src="{{ site.baseurl }}/images/install-jekyll.gif"/>
+    <p>This installs jekyll</p>
+  </li>
+  <li>
+    <img class="console-image" src="{{ site.baseurl }}/images/jekyll-new-project.gif"/>
+    <p>This creates a new jekyll project (make sure you go into your project before the next step)</p>
+  </li>
+  <li style="width: 100%;">
+    <img class="console-image" src="{{ site.baseurl }}/images/jekyll-serve.png"/>
+    <p>This starts up the jekyll-provided local server</p>
+  </li>
+  <li>
+    <img class="console-image" src="{{ site.baseurl }}/images/config.gif"/>
+    <p>
+      Go to the config.yml file to update it with your blog's information (Tip: Every time you change the config file, save it, exit the server by hitting Control + C, type "jeckyll serve" again, and then refresh the page.)
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/my-config.gif"/>
+  </li>
+  <li>
+    <p>
+      Go to Jekyll's "about.md" page and update it with information about yourself (Note: you do not need to restart the server if you make changes outside of the config file- just refresh the browser after changes).
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/my-about-me.gif"/>
+  </li>
+  <li>
+    <p>
+      As default, the Jekyll url is written in this format: category/year/month/daye/title and ends in .html. If you add “permalink: pretty” to your config under Build Settings, it removes the .html. If you set “permalink: /:title”, your blog will only contain the title.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/permalink.gif"/>
+  </li>
+  <li>
+    <p>
+      Go to Jekyll's "_posts" directory and use its sample welcome file to create your first blog.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/posts-folder.gif"/>
+    <p>
+      In the example post that Jekyll created, you will see a block of text at the top sandwiched inside triple dashed lines. This is called a YAML front matter block and Jekyll uses them to maintain a page and its contents.
+    </p>
+    <p>
+      Modify the predefined variables to fit your first blog.
+      Keep layout as post.
+      Change the title to the title of your blog post.
+      Update the categories words to define your blog, each word separated by a space.
+      Change the content of your post.
+      Add author as a variable to the YAML front matter block if you'd like to access it for your posts.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/front-matter.gif"/>
+  </li>
+  <li>
+    <p>
+      The url is not updating with the correct title. That’s because it is using the filename of the blog post in order to update the url. Instead of updating the url based on the file name, we can set a permalink variable in that blog’s front line matters block to set the url to what we would like it to be.
+    </p>
+    <p>
+      Note: You will have to go back to the main Jekyll page, refresh the page, and go back into the blog post to see the change to the url.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/front-matter-permalink.gif"/>
+  </li>
+  <li>
+    <p>
+      Notice below in the index.html how the use of "site.posts" prints out each of your posts. For each post, you have access to certain information that you can use wherever you want on that post's page.
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+      <ul>
+        <li>post.title</li>
+        <li>post.date</li>
+        <li>post.author</li>
+        <li>post.excerpt</li>
+      </ul>
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/reuseable-code.png"/>
+  </li>
+  <li>
+    <p>
+      You can use custom variables in your front matter block such as "image." Set the image to what you want it to be in your front matter block.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/image-variable.png"/>
+  </li>
+  <li>
+    <p>
+      You can use custom variables in your front matter block such as "image." Set the image to what you want it to be.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/image-variable.png"/>
+    <p>
+      Then, in the _layouts directory in post.html, include the code below in order to render the image for that post where you want it to be.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/image-in-post-layout.png"/>
+  </li>
+  <li>
+    <p>
+      What if you do not include an image for a post? To make sure you don’t get a broken image tag on a post in which you decide to not use an image variable, wrap a conditional statement around your image link. This says that the image will display only if there is an image variable for the post on that page.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/image-conditional.png"/>
+    <p>
+      Then, in the _layouts directory in post.html, include the code below in order to render the image for that post where you want it to be.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/image-in-post-layout.png"/>
+  </li>
+  <li>
+    <p>
+      What if you do not include an image for a post? To make sure you don’t get a broken image tag on a post in which you decide to not use an image variable, wrap a conditional statement around your image link. This says that the image will display only if there is an image variable for the post on that page.
+    </p>
+    <img class="console-image" src="{{ site.baseurl }}/images/image-conditional.png"/>
+  </li>
+  <li>
+    <p>
+      To add new posts, simply add a file in the "_posts" directory that follows the convention "YYYY-MM-DD-name-of-post.ext" and includes the necessary front matter.
+    </p>
+  </li>
+  <li>
+    <p>
+      What if you want to work on a post but not publish it yet? To create a draft, 1) Make a new directory called _drafts. 2) Create a regular post in this directory (the date is optional).
+    </p>
+      <img style="width: 50%;" src="{{ site.baseurl }}/images/draft-directory.png"/>
+  </li>
+  <li>
+    <p>
+      To see this draft show up in your index, restart the server using the command "jekyll serve drafts"
+    </p>
+      <img style="width: 50%;" src="{{ site.baseurl }}/images/jekyll-serve-drafts.png"/>
+  </li>
+</ol>
 
-[jekyll-docs]: http://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
-{% endcomment %}
+<h1>There you go!</h1>
+
+<h3>
+  Check out your new blog! Ok, so it's not the most amazing blog ever, but it's a good starting point. Here are a few issues I ran into/things I learned along the way:
+</h3>
+
+<ul>
+  <li>
+    You do not have to use markdown for the markup (whaaaa???). I changed the markdown extensions for my blog posts to html because I am more comfortable with html.
+  </li>
+  <li>
+    I had to change the way I referenced images once I deployed to Github Pages (duh!). Instead of using relative paths that pointed to the image folder I created, I had to use site.baseurl.
+    <img class="console-image" src="{{ site.baseurl }}/images/change-image-path.gif"/>
+    <p>
+      You will need to make this change for the image variables in your front matter as well as other images in your blog post.
+    </p>
+  </li>
+</ul>
+
+<h3>
+  Other Resources:
+</h3>
+<p>
+<strong>jekyll-docs:</strong>http://jekyllrb.com/docs/home
+</p>
+<p>
+  <strong>jekyll-gh:</strong>https://github.com/jekyll/jekyll
+</p>
+<p>
+<strong>jekyll-talk:</strong> https://talk.jekyllrb.com/
+</p>
